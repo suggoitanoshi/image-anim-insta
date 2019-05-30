@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image anim?</title>
+    <style>
+      #draft{
+        width: 80%;
+        height: auto;
+      }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="CanvasRecorder.js"></script>
+  </head>
+  <body>
+    <div id="inputs">
+      <input type="file" accept="image/*" id="photo" @change="addPhoto($event)">
+      <ul>
+        <li v-for="(p, i) in photos">
+          <span>{{p.data.name}}</span><input type="button" @click="rmPhoto(i)" value="x">
+        </li>
+      </ul>
+      <input type="button" value="draw" id="draw" @click="draw">
+      <input type="button" value="animate" id="animate" v-if="!isAnimating" @click="animate">
+      <input type="text" v-if="finishAnimating" v-model="savename" placeholder="Save Name">
+      <input type="button" value="save" v-if="finishAnimating" @click="save">
+    </div>
+    <canvas id="draft">
+    </canvas>
+    <script type="text/javascript" src="createanim.js"></script>
+  </body>
+</html>
